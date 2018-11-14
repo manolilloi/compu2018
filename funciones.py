@@ -4,7 +4,8 @@ Created on Mon Oct 22 20:36:36 2018
 
 @author: Manu
 """
-import urllib as urll
+import urllib
+import ssl
 import re
 import threading
 from datetime import datetime, time, date
@@ -20,6 +21,7 @@ con = pymongo.MongoClient()
 db = con.localdb
 entradas = db.entradas
 alt = 0
+gcontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1) 
 
 def init():
 	extraerinfo()
@@ -27,7 +29,7 @@ def init():
 
 def extraerinfo():
 	url = 'http://www.meneame.net'
-	texto = urll.urlopen(url).read()
+	texto = urllib.urlopen(url, context = gcontext).read()
 	hoy = datetime.today()
 	tiempo = hoy.strftime("%Y/%m/%d %H:%M:%S")
 	print tiempo

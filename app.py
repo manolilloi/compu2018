@@ -50,8 +50,8 @@ def graficas():
 
 if __name__ == '__main__':
 	print 'Se ha iniciado la aplicacion.'
-	f.init()
 	app.debug = True
 	app.run(host ='0.0.0.0', port=80)
+	f.init()
 	
 
