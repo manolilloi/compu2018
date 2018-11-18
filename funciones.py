@@ -26,19 +26,22 @@ gcontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
 def init():
 	extraerinfo()
 
-
-def extraerinfo():
+def consultarweb():
 	url = 'http://www.meneame.net'
 	texto = urllib.urlopen(url, context = gcontext).read()
-	hoy = datetime.today()
-	tiempo = hoy.strftime("%Y/%m/%d %H:%M:%S")
-	print tiempo
 	titular = re.search('<a\s*href=".*?"\s*class="l:\d*"\s*>(.*?)<\/a>',texto).group(1)
 	print titular
 	meneos = int(re.search('(\d+)<\/a>\s*meneos' ,texto).group(1))
 	print "Meneos = %d" % (meneos)
 	clics = int(re.search('(\d+)\s*clics' ,texto).group(1))
 	print "Clics = %d" % (clics)
+	hoy = datetime.today()
+	tiempo = hoy.strftime("%Y/%m/%d %H:%M:%S")
+	print tiempo
+	return titular,meneos,clics,tiempo
+	
+def extraerinfo():
+	titular,meneos,clics,tiempo = consultarweb()
 	entradadb = {'Titular' : titular, 'Meneos' : meneos, 'Clics' : clics, 'Timestamp' : tiempo }
 	entradas.insert(entradadb)
 	bclient.write('compu2018', 'titular', titular)
@@ -54,7 +57,7 @@ def media():
 		lista_clics = entradas.find().sort('Clics')
 		for entry in lista_clics:
 			clics.append(entry['Clics'])
-		#alt = ~alt
+		alt = ~alt
 	else :		
 		lista_clics = bclient.read('compu2018', 'clics', limit = 750)
 		for entry in lista_clics:
@@ -64,17 +67,18 @@ def media():
 	return float("{0:.2f}".format(mean))
   
 def formateardatos(th = None):
-	text = ""
 	if th == None :
-		lista = entradas.find().sort('Timestamp', pymongo.DESCENDING)
-		for entry in lista:
-			titular = entry['Titular']
-			meneos = str(entry['Meneos'])
-			clics = str(entry['Clics'])
-			timestamp = entry['Timestamp']
-			text = text + '<tr><td>'+titular+'</td> <td>'+meneos+'</td><td>'+clics+'</td><td>'+timestamp+'</td></tr>'
+		titular,meneos,clics,tiempo = consultarweb()
+		# lista = entradas.find().sort('Timestamp', pymongo.DESCENDING)
+		# for entry in lista:
+			# titular = entry['Titular']
+			# meneos = str(entry['Meneos'])
+			# clics = str(entry['Clics'])
+			# timestamp = entry['Timestamp']
+		text = '<tr><td>'+titular+'</td> <td>'+str(meneos)+'</td><td>'+str(clics)+'</td><td>'+str(tiempo)+'</td></tr>'
 		return text
 	else :
+		text = ""
 		lista = entradas.find().sort('Timestamp', pymongo.DESCENDING)
 		contador = 0
 		for entry in lista:

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+<head>
+	<style>
+		table {
+		  border: 3px solid black;
+		  border-collapse: collapse;
+		  width:60%; 
+		  text-align: center;
+		}
+		th {
+		  border: 2px solid black;
+		  border-collapse: collapse;
+		}
+		td,tr{
+		  border: 1px solid black;
+		}
+	</style>
+</head> 
+<img src="http://www.uah.es/export/sites/uah/.galleries/imagenes-estructura/logo1.png_105938625.png"</img>
+
+<html>
+<title>Práctica 1</title>
+<body>
+	<h1 style="text-align: center;">Práctica 1 de Computación en red</h1>
+<form action="/graficas"><input type="submit" value="Mostrar gráficas externas" ></form> 
+<form action="/"><input type="submit" value="Mostrar todo" ></form> 
+<form action="/media" method="GET"><input type="submit" value="Calcular media de clics almacenados"></form> 
+	La media es: {{media}} 
+
+
+<form action="/" style="text-align: center;" id="umbral" method="POST" name="umbral"><label for="umbral">Umbral</label><br><input id="umbral" name="umbral" type="text" value="" /><input type="submit" value="Enviar" /></form>	<br>
+{{variable|safe}}
+<p>Histórico: </p>
+
+	<table>
+		<tbody >			
+			<tr>
+				<th> Titular </th>	
+				<th> Meneos </th> 	
+				<th> Clics </th>
+				<th> Fecha y hora de adquisición </th>
+			</tr>
+			
+			{{filas|safe}}
+
+</body>
+</table>
+<footer>
+  <p style="text-align: center;">Práctica 1 de Computación en Red</p>
+  <p style="text-align: center;">Máster Universitario de Ingeniería de Telecomunicaciones</p>
+  <p style="text-align: center;">Realizado por Manuel Soler Borrego: <a href="mailto:manuel.soler@edu.uah.es">manuel.soler@edu.uah.es</a></p>
+</footer>
+</html>

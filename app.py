@@ -9,6 +9,8 @@
 from flask import Flask,render_template, request, redirect
 import funciones as f
 import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 app = Flask(__name__)
 text = ""
@@ -35,6 +37,7 @@ def index():
 		return render_template("index.html", filas = text, variable = text_u)
 	if request.method == 'GET':
 		text = f.formateardatos()
+		print text
 		return render_template("index.html", filas = text )
 		
 @app.route('/media')
