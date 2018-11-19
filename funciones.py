@@ -79,18 +79,20 @@ def formateardatos(th = None):
 		return text
 	else :
 		text = ""
+		titular_anterior=""
 		lista = entradas.find().sort('Timestamp', pymongo.DESCENDING)
 		contador = 0
 		for entry in lista:
-			if entry['Clics'] > th :
+			titular = entry['Titular']
+			if entry['Clics'] > th and titular_anterior!=titular:
 				contador = contador + 1
 				if contador > 10 :
 					break
-				titular = entry['Titular']
 				meneos = str(entry['Meneos'])
 				clics = str(entry['Clics'])
 				timestamp = str(entry['Timestamp'])
 				text = text + '<tr><td>'+titular+'</td> <td>'+meneos+'</td><td>'+clics+'</td><td>'+timestamp+'</td></tr>'
+				titular_anterior = titular
 		return text
 	
 	
