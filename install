@@ -7,14 +7,17 @@ echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 sudo apt-get install python-dev
-#sudo apt-get install python-pip
+sudo apt-get install python-pip
 sudo apt-get install python-virtualenv
+sudo apt-get install git
 sudo apt-get update
 sudo apt-get upgrade
 
-sudo mkdir practica_1
-cd practica_1
-sudo virtualenv flask
-sudo . flask/bin/activate
+git clone https://github.com/manolilloi/compu2018
+cd compu2018
+
+virtualenv flask
+. flask/bin/activate
 pip install -r requirements.txt
+deactivate
 
