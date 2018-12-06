@@ -21,8 +21,11 @@ con = pymongo.MongoClient()
 db = con.localdb
 entradas = db.entradas
 alt = 0
-gcontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1) 
-
+#############################################
+gcontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
+# Opcional. Se puede usar si la web no acepta
+#peticiones.
+#############################################
 def init():
 	extraerinfo()
 
@@ -54,17 +57,20 @@ def media():
 	clics = []
 	global alt
 	if alt == 0 :
+		ddbb = ' (Local)'
 		lista_clics = entradas.find().sort('Clics')
 		for entry in lista_clics:
 			clics.append(entry['Clics'])
 		alt = ~alt
-	else :		
+	else :	
+		ddbb = ' (Externa)'
 		lista_clics = bclient.read('compu2018', 'clics', limit = 750)
 		for entry in lista_clics:
 			clics.append(entry['data'])
 		alt = ~alt
 	mean = np.mean(clics)
-	return float("{0:.2f}".format(mean))
+	 
+	return float("{0:.2f}".format(mean)), ddbb
   
 def formateardatos(th = None):
 	if th == None :

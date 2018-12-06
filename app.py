@@ -42,9 +42,9 @@ def index():
 		
 @app.route('/media')
 def calcularmedia():
-	media = f.media()
+	media, ddbb = f.media()
 	text = f.formateardatos()
-	return render_template("index.html", filas=text, media = media )
+	return render_template("index.html", filas=text, media = str(media)+ddbb )
 
 	
 @app.route('/graficas')	
