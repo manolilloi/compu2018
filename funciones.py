@@ -75,12 +75,15 @@ def media():
 def formateardatos(th = None):
 	if th == None :
 		titular,meneos,clics,tiempo = consultarweb()
+		# Lo que sigue en comentario sirve para obtener los datos almacenados en 
+		# la base de datos al hacer la petición. En vez de eso, la aplicación 
+		# consulta la web al recibir una peticion y la presenta directamente.
 		# lista = entradas.find().sort('Timestamp', pymongo.DESCENDING)
 		# for entry in lista:
-			# titular = entry['Titular']
-			# meneos = str(entry['Meneos'])
-			# clics = str(entry['Clics'])
-			# timestamp = entry['Timestamp']
+		# 	titular = entry['Titular']
+		#	meneos = str(entry['Meneos'])
+		# 	clics = str(entry['Clics'])
+		# 	timestamp = entry['Timestamp']
 		text = '<tr><td>'+titular+'</td> <td>'+str(meneos)+'</td><td>'+str(clics)+'</td><td>'+str(tiempo)+'</td></tr>'
 		return text
 	else :
