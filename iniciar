@@ -3,7 +3,7 @@
 echo "Iniciando..."
 
 sudo service mongod start
-cd ~/practica_1
+cd ~/compu2018
 sudo su
 . flask/bin/activate
 python app.py
