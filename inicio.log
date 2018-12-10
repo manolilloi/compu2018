@@ -1,0 +1,21 @@
+Iniciando servicio de Base de datos
+Servicio Mongod inicializado
+Entrando en entorno virtual
+Iniciando aplicacion
+Se ha iniciado la aplicacion.
+ Científicos descubren la forma de reprogramar células para combatir el cáncer 
+Meneos = 55
+Clics = 93
+2018/12/10 20:46:01
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+81.35.243.88 - - [10/Dec/2018 20:46:20] "GET / HTTP/1.1" 200 -
+81.35.243.88 - - [10/Dec/2018 20:46:20] "GET /favicon.ico HTTP/1.1" 404 -
+81.35.243.88 - - [10/Dec/2018 20:46:27] "GET /media HTTP/1.1" 200 -
+81.35.243.88 - - [10/Dec/2018 20:46:28] "GET /media HTTP/1.1" 200 -
+81.35.243.88 - - [10/Dec/2018 20:46:29] "GET /media HTTP/1.1" 200 -
+81.35.243.88 - - [10/Dec/2018 20:46:53] "GET / HTTP/1.1" 200 -
