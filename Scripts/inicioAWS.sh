@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo Iniciando servicio de Base de datos
 
 sudo service mongod start
