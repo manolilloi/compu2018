@@ -15,6 +15,7 @@ sudo apt-get upgrade
 
 git clone https://github.com/manolilloi/compu2018
 mv ./compu2018/Scripts ./
+sudo chmod 777 /Scripts/inicioAWS.sh
 sudo cp /home/ubuntu/Scripts/inicioAWS.sh /etc/init.d/
 sudo update-rc.d inicioAWS.sh defaults
 
