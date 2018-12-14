@@ -1,9 +1,0 @@
-#!/bin/bash
-# Inicio aplicacion a través de bash
-echo "Iniciando..."
-
-sudo service mongod start
-cd ~/compu2018
-sudo su
-. flask/bin/activate
-python app.py
