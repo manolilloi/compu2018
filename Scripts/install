@@ -11,12 +11,14 @@ yes | sudo apt-get install python-pip
 yes | sudo apt-get install python-virtualenv
 yes | sudo apt-get install git
 sudo apt-get update
-sudo apt-get upgrade
+yes | sudo apt-get upgrade
 
 git clone https://github.com/manolilloi/compu2018
 mv ./compu2018/Scripts ./
 
 cd compu2018
+sudo service mongod start
+mongoimport --db localdb --collection entradas --file database.json
 
 virtualenv flask
 . flask/bin/activate
