@@ -5,19 +5,16 @@ sudo apt-get install ssh
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
 sudo apt-get update
-sudo apt-get install -y mongodb-org
-sudo apt-get install python-dev
-sudo apt-get install python-pip
-sudo apt-get install python-virtualenv
-sudo apt-get install git
+yes | sudo apt-get install -y mongodb-org
+yes | sudo apt-get install python-dev
+yes | sudo apt-get install python-pip
+yes | sudo apt-get install python-virtualenv
+yes | sudo apt-get install git
 sudo apt-get update
-sudo apt-get upgrade
+yes | sudo apt-get upgrade
 
 git clone https://github.com/manolilloi/compu2018
 mv ./compu2018/Scripts ./
-sudo chmod 777 /Scripts/inicioAWS.sh
-sudo cp /home/ubuntu/Scripts/inicioAWS.sh /etc/init.d/
-sudo update-rc.d inicioAWS.sh defaults
 
 cd compu2018
 
@@ -26,3 +23,10 @@ virtualenv flask
 pip install -r requirements.txt
 deactivate
 
+cd /home/ubuntu/Scripts
+chmod a+x duck.sh
+cd ..
+sudo cp /home/ubuntu/Scripts/inicioAWS.sh /etc/init.d/
+sudo chmod +x /etc/init.d/inicioAWS.sh
+sudo update-rc.d inicioAWS.sh defaults
+sudo reboot now
